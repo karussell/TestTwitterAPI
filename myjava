@@ -1,0 +1,8 @@
+#java -cp target/twittertestapi.jar "$@"
+
+#if webapp
+DIR=`dirname $0`
+CLASSES=$DIR/target/classes/
+LIBS=$DIR/target/twittertestapi//WEB-INF/lib/
+JARS=$(find $LIBS -iname "*.jar" | tr  '\n' ':')
+java -cp $JARS:$CLASSES "$@"

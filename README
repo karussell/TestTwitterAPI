@@ -1,0 +1,5 @@
+You can build the programm via:
+mvn clean install
+
+and call it via:
+./myjava -Dtwitter4j.oauth.consumerKey=key -Dtwitter4j.oauth.consumerSecret=value de.jetwick.tw.NewClass "java" token tokenSecret
