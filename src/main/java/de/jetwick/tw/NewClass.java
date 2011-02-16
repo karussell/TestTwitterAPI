@@ -166,15 +166,15 @@ public class NewClass {
         long minId = Collections.min(asyncMap.keySet());
         Map<Long, String> all = new TreeMap<Long, String>(asyncMap);
         Map<Long, String> searchMapWithoutHistoric = new TreeMap<Long, String>();
-        for (Entry<Long, String> e : searchMap.entrySet()) {
+        for (Entry<Long, String> searchEntry : searchMap.entrySet()) {
             // streaming does not catch historic tweets, so do not include them
-            if (e.getKey() < minId)
+            if (searchEntry.getKey() < minId)
                 continue;
 
-            searchMapWithoutHistoric.put(e.getKey(), e.getValue());
-            String str = all.put(e.getKey(), e.getValue());
-            if (str != null && !str.equals(e.getValue()))
-                error(e.getKey() + " strings different:" + str + " != " + e.getValue());
+            searchMapWithoutHistoric.put(searchEntry.getKey(), searchEntry.getValue());
+            String asyncStr = all.put(searchEntry.getKey(), searchEntry.getValue());
+            if (asyncStr != null && !asyncStr.equals(searchEntry.getValue()))
+                error(searchEntry.getKey() + " strings different:" + asyncStr + " != " + searchEntry.getValue());
         }
 
         Map<Long, String> onlyInSearch = new TreeMap<Long, String>(searchMapWithoutHistoric);
